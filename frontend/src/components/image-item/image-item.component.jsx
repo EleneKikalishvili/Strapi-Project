@@ -1,26 +1,35 @@
 import React from "react";
+import { connect } from "react-redux";
+
+import { addItem } from "../../redux/dropdown/dropdown.actions";
 
 import CustomButton from "../custom-button/custom-button.component.jsx";
 
 import {
   CollectionItemContainer,
-  CollectionFooterContainer,
+  ImageFooterContainer,
   BackgroundImage,
   DateContainer,
   RatingContainer,
 } from "./image-item.styles.jsx";
 
-function ImageItem({ image }) {
+function ImageItem({ image, addItem }) {
   return (
     <CollectionItemContainer>
       <BackgroundImage imageUrl={`http://localhost:1337${image.img.url}`} />
-      <CollectionFooterContainer>
+      <ImageFooterContainer>
         <DateContainer>{image.published_at}</DateContainer>
         <RatingContainer>{image.rating}&#10025;</RatingContainer>
-      </CollectionFooterContainer>
-      <CustomButton favourites>add to favorites</CustomButton>
+      </ImageFooterContainer>
+      <CustomButton onClick={() => addItem(image)} favourites>
+        add to favorites
+      </CustomButton>
     </CollectionItemContainer>
   );
 }
 
-export default ImageItem;
+const mapDispatchToProps = (dispatch) => ({
+  addItem: (image) => dispatch(addItem(image)),
+});
+
+export default connect(null, mapDispatchToProps)(ImageItem);

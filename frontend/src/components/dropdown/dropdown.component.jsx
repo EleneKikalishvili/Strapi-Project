@@ -1,4 +1,9 @@
 import React from "react";
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
+
+import DropdownItem from "../dropdown-item/dropdown-item.component.jsx";
+import { selectFavItems } from "../../redux/dropdown/dropdown.selectors";
 
 import {
   CartDropdownContainer,
@@ -6,26 +11,28 @@ import {
   EmptyMessageContainer,
 } from "./dropdown.styles.jsx";
 
-function Dropdown() {
+function Dropdown({ favItems }) {
   return (
     <div>
       <CartDropdownContainer>
         <CartItemsContainer>
-          <EmptyMessageContainer>Your cart is empty</EmptyMessageContainer>
+          {favItems.length ? (
+            favItems.map((image) => (
+              <DropdownItem key={image.id} favItem={image} />
+            ))
+          ) : (
+            <EmptyMessageContainer>
+              Your fav's list is empty
+            </EmptyMessageContainer>
+          )}
         </CartItemsContainer>
       </CartDropdownContainer>
     </div>
   );
 }
 
-export default Dropdown;
+const mapStateToProps = createStructuredSelector({
+  favItems: selectFavItems,
+});
 
-// {
-//   cartItems.length ? (
-//     cartItems.map((cartItem) => (
-//       <CartItem key={cartItem.id} item={cartItem} />
-//     ))
-//   ) : (
-//     <EmptyMessageContainer>Your cart is empty</EmptyMessageContainer>
-//   )
-// }
+export default connect(mapStateToProps)(Dropdown);

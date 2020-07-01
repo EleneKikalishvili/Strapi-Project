@@ -29,7 +29,7 @@ export const BackgroundImage = styled.img`
   background-image: ${({ imageUrl }) => `url(${imageUrl})`};
 `;
 
-export const CollectionFooterContainer = styled.div`
+export const ImageFooterContainer = styled.div`
   width: 100%;
   height: 5%;
   display: flex;

@@ -1,7 +1,13 @@
 import React from "react";
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
 
 import Query from "../query/index.js";
 import CATEGORIES_QUERY from "../../queries/category/categories";
+
+import HeartIcon from "../heart-icon/heart-icon.component.jsx";
+import Dropdown from "../dropdown/dropdown.component.jsx";
+import { selectDropdownHidden } from "../../redux/dropdown/dropdown.selectors";
 
 import {
   NavContainer,
@@ -10,7 +16,7 @@ import {
   OptionLink,
 } from "./nav.styles.jsx";
 
-function Nav() {
+function Nav({ hidden }) {
   return (
     <Query query={CATEGORIES_QUERY} id={null}>
       {({ data: { categories } }) => {
@@ -28,8 +34,9 @@ function Nav() {
             </OptionsContainer>
             <OptionsContainer>
               <OptionLink to="/">Sign In</OptionLink>
-              <OptionLink to="/">&#10084;</OptionLink>
+              <HeartIcon />
             </OptionsContainer>
+            {hidden ? null : <Dropdown />}
           </NavContainer>
         );
       }}
@@ -37,4 +44,8 @@ function Nav() {
   );
 }
 
-export default Nav;
+const mapStateToProps = createStructuredSelector({
+  hidden: selectDropdownHidden,
+});
+
+export default connect(mapStateToProps)(Nav);
