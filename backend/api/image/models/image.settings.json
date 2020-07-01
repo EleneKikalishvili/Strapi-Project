@@ -1,0 +1,40 @@
+{
+  "kind": "collectionType",
+  "collectionName": "images",
+  "info": {
+    "name": "image"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "img": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "files",
+        "images",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": true
+    },
+    "like": {
+      "type": "boolean"
+    },
+    "published_at": {
+      "type": "date",
+      "required": true
+    },
+    "categories": {
+      "collection": "category",
+      "via": "images",
+      "dominant": true
+    },
+    "rating": {
+      "type": "integer",
+      "default": 0
+    }
+  }
+}
