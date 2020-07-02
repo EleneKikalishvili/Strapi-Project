@@ -6,7 +6,7 @@ import Query from "../query/index.js";
 import CATEGORIES_QUERY from "../../queries/category/categories";
 
 import HeartIcon from "../heart-icon/heart-icon.component.jsx";
-import Dropdown from "../dropdown/dropdown.component.jsx";
+import Dropdown from "../fav-items-dropdown/dropdown.component.jsx";
 import { selectDropdownHidden } from "../../redux/dropdown/dropdown.selectors";
 
 import {
