@@ -7,7 +7,6 @@ const CATEGORIES_QUERY = gql`
       name
       images {
         id
-        like
         published_at
         rating
         img {

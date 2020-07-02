@@ -18,14 +18,11 @@
         "videos"
       ],
       "plugin": "upload",
-      "required": true
-    },
-    "like": {
-      "type": "boolean"
+      "required": false
     },
     "published_at": {
       "type": "date",
-      "required": true
+      "required": false
     },
     "categories": {
       "collection": "category",

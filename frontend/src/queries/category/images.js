@@ -10,7 +10,6 @@ const CATEGORY_IMAGES_QUERY = gql`
         img {
           url
         }
-        like
         published_at
         categories {
           id
